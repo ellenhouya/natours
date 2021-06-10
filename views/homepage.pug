@@ -30,14 +30,14 @@ block content
             div(class=`box box${index + 1}`)
                 h2(data-jarallax-element=`0 ${index%2 === 0? 200: -200}`)=`${tour.name}`
                 div(class=`container container${index + 1}`)
-                    .imgBx.jarallax                        
-                        -if(index >= 9)
+                    .imgBx.jarallax
+                        - const sourceLink = `/img/homepage/video${index +1}.mp4`                        
+                        -if(index=== 1 || index === 2 || index ===6 || index === 8 || index === 9)
                             img.jarallax-img(src=`/img/tours/${tour.imageCover}`)
                         -else
                             video(autoplay muted loop).jarallax-img
-                                source(src=`/img/homepage/video${index +1}.mp4` type='video/mp4')
-
-
+                                source(src=sourceLink type='video/mp4')
+   
                     .content(data-jarallax-element=`0 ${index%2 === 0? 200: -200}`)
                         p=`${tour.description}`
         - if(index === 6)
