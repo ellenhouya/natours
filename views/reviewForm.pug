@@ -1,0 +1,40 @@
+extends base
+
+block append head
+    link(rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css' integrity='sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU' crossorigin='anonymous')
+    link(rel='stylesheet' href='/css/reviewForm.css')
+    title= title
+
+block content
+    
+    .review-container
+        .review-image-box
+            img.review-img(src=`/img/tours/${tour.imageCover}` alt=`${tour.name} image`)
+        .review-detail-con
+            p.review-tour-name The Forest Hiker Tour
+            .stars
+                each star, i in [1, 2, 3, 4, 5]
+                    i.fas.fa-star(data-star-id=`${i+1}` class=`star-${i+1}`)
+
+            
+            textarea.review-detail(placeholder='Tell us more')
+            .review-tips-con
+                h3 Tips for Writing a Review
+                .all-tips
+                    .tip
+                        i.far.fa-check-circle
+                        p
+                            | Share your honest opinion about the product! The more
+                            | informative and useful a review, the more thumbs up.
+                    .tip
+                        i.far.fa-check-circle
+                        p
+                            | Don’t include your Rewards Code/Link, personal information or
+                            | offensive words.
+                    .tip
+                        i.far.fa-check-circle
+                        p
+                            | Avoid political, ethical, religious comments and mentions of
+                            | people.
+            button.submit-review-btn Submit Review
+

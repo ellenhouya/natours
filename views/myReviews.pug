@@ -1,0 +1,74 @@
+extends base
+
+block append head
+    link(rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css' integrity='sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU' crossorigin='anonymous')
+    link(rel='stylesheet' href='/css/reviews.css')
+    title= title
+
+        block content
+            -if(title === 'All Reviews' )
+                label.sort-label Sort by 
+                    select#sort-by
+                        option(value='default' selected= defaultOption == 'default' ) DEFAULT
+                        option(value='-rating' selected= defaultOption == '-rating' ) RATING HIGH TO LOW
+                        option(value='rating' selected= defaultOption == 'rating' ) RATING LOW TO HIGH
+                        option(value='-createAt'  selected= defaultOption == '-createAt' ) CREATE AT
+                       
+
+                label.filter-label Filter By
+                    select#filter-by
+                        
+                        option(value='tour' selected = defaultFilter == 'tour' )= `TOUR` 
+                        option(value='user' selected = defaultFilter == 'user')= `USER`
+                        option(value='rating[gt]' selected = defaultFilter == 'rating[gt]')= `RATING >`
+                        option(value='rating[lt]' selected = defaultFilter == 'rating[lt]')= `RATING <`
+                            input.filter-input(type="text" value= defaultNum placeholder='Object Id')
+                            button.filter-btn Filter
+            .all-reviews-con
+                each review, i in reviews
+                    .review-container
+                        i.far.fa-trash-alt(data-review-id=`${review.id}`)
+                        - if (title === 'My Reviews' )
+                            a(href='/reviewUpdateForm')
+                                i.far.fa-edit.fa-edit-me(data-update-review-id=`${review.id}`)
+                        - else if (title === 'All Reviews')
+                            a(href=`/review-update-form-admin/${review.id}/${users[i].id}/${tours[i].id}`)
+                                i.far.fa-edit.fa-edit-admin
+                        - else
+                            i.far.fa-check-square.check-square-review(data-update-review-id=`${review.id}`)
+
+                        .user-info-con
+                            -if(title ==='All Reviews')
+                                .img-box
+                                    img(src=`/img/users/${users[i].photo? users[i].photo: 'user.png'}` alt=`${users[i].name}'s photo`)
+                                    p= users[i].name
+                            -else 
+                                .img-box
+                                    img(src=`/img/users/${user.photo? user.photo: 'user.png'}` alt=`${user.name}'s photo`)
+                                p= user.name
+                        .review-info-con
+                            .star-date-con
+                                .stars
+                                   
+                                    - if (title === 'My Reviews' || title === 'All Reviews')
+                                        each star in [1, 2, 3, 4, 5]
+                                            i.fas.fa-star(class=`${review.rating >= star? "": 'inactive'}`)
+                                    - else
+                                         each star, starIndex in [1, 2, 3, 4, 5]
+                                            i.fas.fa-star(data-star-id=`${i*5 +starIndex +1}` class=`star-${i*5 +starIndex +1} ${review.rating >= star? "": 'inactive'}` )
+
+                                p.post-date= `Posted on ${review.createAt ? review.createAt.toLocaleString({month: 'long', year:'numeric'}) : new Date().toLocaleString({month: 'long', year:'numeric'})}`
+                           
+                            - if (title === 'My Reviews'|| title === 'All Reviews')
+                                p.review-text= review.review
+                            - else 
+                                textarea.review-text= review.review
+
+                        .others-con
+                            p.tour-name= `${tours[i].name}`
+                            .tour-box
+                                img(src=`/img/tours/${tours[i].imageCover}` alt=`${tours[i].name} image`)
+                            
+                                
+
+

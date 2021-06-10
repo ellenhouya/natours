@@ -1,0 +1,37 @@
+extends base
+
+block append head
+    link(rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css' integrity='sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU' crossorigin='anonymous')
+    link(rel='stylesheet' href='/css/reviews.css')
+    title= title
+
+        block content
+            .all-reviews-con
+                    .review-container
+                        i.far.fa-trash-alt(data-review-id=`${review.id}`)
+                        i.far.fa-check-square.check-square-review(data-update-review-id=`${review.id}`)
+
+                        .user-info-con
+                            .img-box
+                                img(src=`/img/users/${user_nonAdmin.photo? user_nonAdmin.photo: 'user.png'}` alt=`${user_nonAdmin.name}'s photo`)
+                            p= user_nonAdmin.name
+
+                        .review-info-con
+                            .star-date-con
+                                .stars
+                                    each star, starIndex in [1, 2, 3, 4, 5]
+                                        i.fas.fa-star(data-star-id=`${starIndex +1}` class=`star-${starIndex +1} ${review.rating >= star? "": 'inactive'}` )
+
+                                p.post-date= `Posted on ${new Date().toLocaleString({month: 'long', year:'numeric'})}`
+                           
+
+                            textarea.review-text= review.review
+
+                        .others-con
+                            p.tour-name= `${tour.name}`
+                            .tour-box
+                                img(src=`/img/tours/${tour.imageCover}` alt=`${tour.name} image`)
+                            
+                                
+
+

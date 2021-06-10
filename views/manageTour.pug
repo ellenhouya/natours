@@ -1,0 +1,148 @@
+extends base
+
+block content 
+  main.main
+    .card-container
+        each tour, i in tours
+            form.tours-form(id=tour._id)
+                .card
+                    span.border_anim
+                    span.border_anim
+                    span.border_anim
+                    span.border_anim
+                    .card__header
+                        .card__picture
+                            .upload-con(class=`upload-con-${i+1}`)
+                                label(for=`tourImageCover${i+1 }`  ) Image Cover
+                                input(type='file', accept='image/*', id=`tourImageCover${i+1 }`, name='imageCover' hidden)
+                            
+                                label(for=`tourImages-${i+1 + i*2}`  ) Image 1  
+                                input(type='file', accept='image/*', class=`tourImages-${i+1 + i*2}`  id=`tourImages-${i+1 + i*2}` name='images' hidden
+                               )
+                            
+                                label(for=`tourImages-${i+2 +i*2}` ) Image 2
+                                input(type='file', accept='image/*', class=`tourImages-${i+2 +i*2} ` id=`tourImages-${i+2 +i*2}`  name='images' hidden)
+                            
+                                label(for=`tourImages-${i+3+i*2}` ) Image 3
+                                input(type='file', accept='image/*', class=`tourImages-${i+3+i*2}` id=`tourImages-${i+3+i*2}` name='images' hidden)
+
+                            img.card__picture-img.card__picture-opacity(src=`/img/tours/${tour.imageCover}`, alt=`${tour.name}`)
+                            
+                        h3.heading-tertirary
+                            input.tour-name-input(type='text' name='name' placeholder=`${tour.name}` id=`tourName-${i +1}`)
+
+                    .card__details
+                        
+                        h4
+                            input(type='text' name='difficulty' placeholder=`Tour difficulty: ${tour.difficulty}` id=`diffiulty-${i +1 }`)
+                            input(type='text' name='duration' placeholder=`Tour duration: ${tour.duration}` id=`duration-${i+1}`)
+                        br
+                        textarea(type='text' name='summary' placeholder=`Summary: ${tour.summary}` id=`summary-${i+1}`)
+
+                        br
+                        .card__data
+                            svg.card__icon
+                                use(xlink:href='/img/icons.svg#icon-map-pin')
+                            input(type='text' name='description' placeholder=`${tour.startLocation.description}` id=`description-${i+1}`)
+                           
+                        br
+                        .card__data
+                            svg.card__icon
+                                use(xlink:href='/img/icons.svg#icon-calendar')
+                            input(type='text' name='startDates' placeholder=`Start date: ${ tour.startDates[0].toLocaleString('en-us', {month:'long', year:'numeric'})}` id=`startDate-${i+1}`)
+                        
+                        br
+                        .card__data
+                            svg.card__icon
+                                use(xlink:href='/img/icons.svg#icon-flag')
+                            span= `${tour.locations.length} stops` 
+                            
+                        br
+                        .card__data
+                            svg.card__icon
+                                use(xlink:href='/img/icons.svg#icon-user')
+                            input(type='text' name='maxGroupSize' placeholder=`${tour.maxGroupSize} people` id=`maxGroupSize-${i+1}`)
+                        
+
+                    .card__footer
+                        div.footer-text-con
+                            p
+                                input.card__footer-price(type='number' name='price' placeholder=`price: ${tour.price}` id=`price-${i +1}`)
+                                | 
+                                span.card__footer-text per person
+                            p.card__ratings
+                                span.card__footer-value= tour.ratingsAverage
+                                | 
+                                span.card__footer-text= `rating (${tour.ratingsQuantity})`
+                        div.footer-buttons-con
+                            button.btn.btn--green.btn--small Update
+                            div.delete-tour-button Delete
+        
+        form.tours-form-add(id='tours-form-add')
+            .card
+                span.border_anim
+                span.border_anim
+                span.border_anim
+                span.border_anim
+                .card__header
+                    .card__picture
+                        .upload-con(class='upload-con-add')
+                            label(for='tourImageCover-add') Image Cover
+                            input(type='file', accept='image/*', id=`tourImageCover-add`, name='imageCover' hidden)
+                            
+                            label(for=`tourImages--add1`  ) Image 1  
+                            input(type='file', accept='image/*', class=`tourImages--add1`  id=`tourImages--add1` name='images' hidden
+                               )
+                            
+                            label(for=`tourImages--add2` ) Image 2
+                            input(type='file', accept='image/*', class=`tourImages--add2 ` id=`tourImages--add2`  name='images' hidden)
+                            
+                            label(for=`tourImages--add3` ) Image 3
+                            input(type='file', accept='image/*', class=`tourImages--add3` id=`tourImages--add3` name='images' hidden)
+
+                        img.card__picture-img.card__picture-opacity(alt='tour name')
+                            
+                    h3.heading-tertirary
+                        input.tour-name-input.tour-name-add(type='text' name='name' placeholder='tour name' id=`tourName-add`)
+
+                .card__details         
+                    h4
+                        input(type='text' name='difficulty' placeholder='Tour difficulty' id=`difficulty-add`)
+                        input(type='text' name='duration' placeholder='Tour duration' id='duration-add')
+                    br
+                    textarea(type='text' name='summary' placeholder='Summary' id='summary-add')
+
+                    br
+                    textarea(type='text' name='description' placeholder='description' id='description-add')
+
+                  
+                           
+                    br
+                    .card__data
+                        svg.card__icon
+                            use(xlink:href='/img/icons.svg#icon-calendar')
+                        textarea(type='text' name='startDates' placeholder='Start date: 2021-05-04, 2021-05-05' id='startDate-add')
+                        
+                    br
+                    .card__data
+                        svg.card__icon
+                            use(xlink:href='/img/icons.svg#icon-user')
+                        textarea(type='text' name='guides' placeholder='guides: guide id' id='guides-add') 
+                            
+                    br
+                    .card__data
+                        svg.card__icon
+                            use(xlink:href='/img/icons.svg#icon-user')
+                        input(type='text' name='maxGroupSize' placeholder='25 people' id='maxGroupSize-add')
+                        
+
+                .card__footer
+                    p
+                        input.card__footer-price(type='number' name='price' placeholder='price: 497' id='price-add')
+                        | 
+                        span.card__footer-text  per person
+                    p.card__ratings
+                        span.card__footer-value 0
+                        | 
+                        span.card__footer-text rating(0)                       
+                    button.btn.btn--green.btn--small ADD TOUR

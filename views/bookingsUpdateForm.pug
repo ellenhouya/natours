@@ -1,0 +1,44 @@
+extends base
+
+block append head
+    link(rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css' integrity='sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU' crossorigin='anonymous')
+    link(rel='stylesheet' href='/css/allUsers.css')
+    title= title
+
+block content
+    .all-bookings-con.update-booking-con
+        .user-container          
+            .img-box
+                img(src=`/img/users/${booking.user.photo? booking.user.photo: 'user.png'}` alt=`${booking.user.name}'s photo`)
+
+            .user-info-con
+               
+                label.booking-label(for="") Create at:
+                | 
+                input.booking-input.booking-input-createdAt(type="text" placeholder = `${booking.createAt.toLocaleString({month:'long', year:'numeric'})}`) 
+                br
+                label.booking-label(for="") Unit Price:
+                | 
+                input.booking-input.booking-input-price(type="text" placeholder=`${booking.price}`) 
+                br
+                label.booking-label(for="") Paid: 
+                | 
+                input.booking-input.booking-input-paid(type="text" placeholder=`${booking.paid}`) 
+               
+
+            .icons-con
+                a
+                    i.far.fa-edit.fa-edit-booking
+                i.far.fa-trash-alt.remove-icon
+
+
+
+
+
+
+
+
+
+
+
+

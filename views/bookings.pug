@@ -1,0 +1,39 @@
+extends base
+
+block append head
+    link(rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css' integrity='sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU' crossorigin='anonymous')
+    link(rel='stylesheet' href='/css/allUsers.css')
+    title= title
+
+block content
+    .all-bookings-con
+            each booking, i in bookings  
+                .user-container          
+                    .img-box
+                        - if(booking.user)
+                            img(src=`/img/users/${booking.user.photo? booking.user.photo: 'user.png'}` alt=`${booking.user.name}'s photo`)
+
+                    .user-info-con
+                        p= `Booking ID: ${booking.id}`
+                        p= `Tour Name: ${booking.tour.name}`
+                        - if(booking.user)
+                            p= `User Email: ${booking.user.email}`
+                        p= `Created at: ${booking.createAt.toLocaleString({month:'long', year:'numeric'})}`
+                        p= `Quantity: ${booking.quantity}`
+                        p= `Unit Price: $${booking.price}`
+                        p= `Total: $${booking.price * booking.quantity} `
+                        p= `Paid: ${booking.paid}`
+                        
+                       
+                    .icons-con
+                        a(href=`/bookings-update-form/${booking.id}`)
+                            i.far.fa-edit
+                        i.far.fa-trash-alt.remove-icon.remove-icon-booking(data-review-id=`${booking.id}`)
+        
+            
+
+
+
+
+
+

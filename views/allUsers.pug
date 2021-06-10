@@ -1,0 +1,107 @@
+extends base
+
+block append head
+    link(rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css' integrity='sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU' crossorigin='anonymous')
+    link(rel='stylesheet' href='/css/allUsers.css')
+    title= title
+
+block content
+    .all-users-con
+        -if(title === 'All Users' )
+            label.sort-label Sort by 
+                select#sort-by
+                    option(value='default' selected= defaultOption == 'default') DEFAULT
+                    option(value='email' selected= defaultOption == 'email' id='email') EMAIL
+                    option(value='name' selected= defaultOption == 'name' id='name') NAME
+                    
+            label.filter-label Filter By
+                select#filter-by
+                    option(value='role' selected = defaultFilter == 'role' )= `ROLE` 
+                        input.filter-input(type="text" value= defaultNum placeholder='Text')
+                        button.filter-btn Filter
+
+            each user, i in users  
+                .user-container          
+                    .img-box
+                        img(src=`/img/users/${user.photo? user.photo: 'user.png'}` alt=`${user.name}'s photo`)
+
+                    .user-info-con
+                        p= `ID: ${user.id}`
+                        p= `Name: ${user.name}`
+                        p= `Email: ${user.email}`
+                        p= `Role: ${user.role}`
+                        - if(user.favoriteTours && user.favoriteTours.length===0)
+                            .favoriteTours-info Favorite tours: null 
+                        - else
+                            .favoriteTours-info Favorite tours:
+                                .favoriteTours-con
+                                    each tour, tourIndex in user.favoriteTours
+                                        div.favorite-tour #{tourIndex+1}.
+                                            | 
+                                            .detail-con  
+                                                span= `ID: ${tour.id}` 
+                                                br 
+                                                span= `Name: ${tour.name}`
+                                                br 
+                                                span= `Price: ${tour.price}` 
+                                                br
+                                                .start-date-con
+                                                    each date, dateIndex in tour.startDates 
+                                                        span= `${dateIndex ===0? 'Start dates: ':''} ${date.toLocaleString({month:'long', year:'numeric'})}` 
+                                                        br
+                    .icons-con
+                        a(href=`/user-update-form/${user.id}`)
+                            i.far.fa-edit
+                        i.far.fa-trash-alt.remove-icon
+       
+        -else
+            form.user-container.user-container-update.img-box-update-form         
+                .img-box.img-box-update
+                    img.current-img(src=`/img/users/${user_nonAdmin.photo? user_nonAdmin.photo: 'user.png'}` alt=`${user_nonAdmin.name}'s photo`)
+                    label(for="photo" id='photo-label') Update photo
+                    input(type="file" name='photo' id='photo' class='photo' accept='image/*') 
+
+                .user-info-con.user-info-con-update
+                    p= `ID: ${user_nonAdmin.id}`
+                    input.name-update-field(type="text" placeholder=`Name: ${user_nonAdmin.name}`)
+
+                    input.email-update-field(type="text" placeholder=`Email: ${user_nonAdmin.email}`) 
+
+                    input.role-update-field(type="text" placeholder=`Role: ${user_nonAdmin.role}`)
+
+                    - if(!user_nonAdmin.favoriteTours.length)
+                        .favoriteTours-info Favorite tours: null 
+                    - else
+                        .favoriteTours-info Favorite tours:
+                            .favoriteTours-con
+                                each tour, tourIndex in user_nonAdmin.favoriteTours
+                                    div.favorite-tour #{tourIndex+1}.
+                                        | 
+                                        .detail-con  
+                                            span= `ID: ${tour.id}` 
+                                            br 
+                                            span= `Name: ${tour.name}`
+                                            br 
+                                            span= `Price: ${tour.price}` 
+                                            br
+                                            .start-date-con
+                                                each date, dateIndex in tour.startDates 
+                                                    span= `${dateIndex ===0? 'Start dates: ':''} ${date.toLocaleString({month:'long', year:'numeric'})}` 
+                                                    br
+                .icons-con
+                    button.update-user-button       
+                        i.far.fa-check-square.update-user-button
+
+
+
+
+
+
+
+
+
+
+
+
+
+
