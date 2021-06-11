@@ -5,7 +5,7 @@ export const updateBooking = async (bookingId, data) => {
   try {
     const res = await axios({
       method: 'PATCH',
-      url: `http://localhost:3001/api/v1/bookings/${bookingId}`,
+      url: `/api/v1/bookings/${bookingId}`,
       data,
     });
 
@@ -20,7 +20,7 @@ export const removeBooking = async (bookingId, data) => {
   try {
     const res = await axios({
       method: 'DELETE',
-      url: `http://localhost:3001/api/v1/bookings/${bookingId}`,
+      url: `/api/v1/bookings/${bookingId}`,
       data,
     });
 

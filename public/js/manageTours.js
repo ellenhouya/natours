@@ -6,7 +6,7 @@ export const addTour = async (form) => {
   try {
     const res = await axios({
       method: 'POST',
-      url: 'http://localhost:3001/api/v1/tours',
+      url: '/api/v1/tours',
       data: form,
     });
 
@@ -27,7 +27,7 @@ export const updateTour = async (tourId, form) => {
   try {
     const res = await axios({
       method: 'PATCH',
-      url: `http://localhost:3001/api/v1/tours/${tourId}`,
+      url: `/api/v1/tours/${tourId}`,
       data: form,
     });
 
@@ -45,7 +45,7 @@ export const deleteTour = async (tourId) => {
   try {
     const res = await axios({
       method: 'DELETE',
-      url: `http://localhost:3001/api/v1/tours/${tourId}`,
+      url: `/api/v1/tours/${tourId}`,
     });
 
     if (res.status === 204) {

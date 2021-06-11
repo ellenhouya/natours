@@ -140,8 +140,6 @@ if (toursUpdateForm) {
     tourForm.addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      console.log(e.target);
-
       const uploadCon =
         e.target.firstElementChild.children[4].firstElementChild
           .firstElementChild;

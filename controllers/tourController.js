@@ -81,16 +81,6 @@ exports.aliasTopTours = (req, res, next) => {
   next();
 };
 
-exports.lowestPrice = (req, res, next) => {
-  req.query.sort = 'price';
-  next();
-};
-
-exports.heighestPrice = (req, res, next) => {
-  req.query.sort = '-price';
-  next();
-};
-
 exports.getAllTours = getAll(Tour);
 
 exports.getTour = getOne(Tour, { path: 'reviews' });

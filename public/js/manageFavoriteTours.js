@@ -5,7 +5,7 @@ export const manageFavoriteTours = async (tourName) => {
   try {
     await axios({
       method: 'PATCH',
-      url: `http://localhost:3001/api/v1/users/updateMyFavoriteTours/${tourName}`,
+      url: `/api/v1/users/updateMyFavoriteTours/${tourName}`,
     });
 
     location.reload();
@@ -19,7 +19,7 @@ export const removeTourFromFavoriteList = async (reviewId) => {
   try {
     await axios({
       method: 'DELETE',
-      url: `http://localhost:3001/api/v1/reviews/${reviewId}`,
+      url: `/api/v1/reviews/${reviewId}`,
     });
 
     location.reload();

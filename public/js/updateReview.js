@@ -5,7 +5,7 @@ export const updateReview = async (reviewId, rating, review) => {
   try {
     const res = await axios({
       method: 'PATCH',
-      url: `http://localhost:3001/api/v1/reviews/${reviewId}`,
+      url: `/api/v1/reviews/${reviewId}`,
       data: {
         rating,
         review,

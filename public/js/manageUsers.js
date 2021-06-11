@@ -5,7 +5,7 @@ export const deleteUser = async (userId) => {
   try {
     const res = await axios({
       method: 'DELETE',
-      url: `http://localhost:3001/api/v1/users/${userId}`,
+      url: `/api/v1/users/${userId}`,
     });
 
     if (res.status === 204) showAlert('success', 'The user has been deleted');
@@ -21,7 +21,7 @@ export const updateUser = async (userId, data) => {
   try {
     const res = await axios({
       method: 'PATCH',
-      url: `http://localhost:3001/api/v1/users/${userId}`,
+      url: `/api/v1/users/${userId}`,
       data,
     });
 

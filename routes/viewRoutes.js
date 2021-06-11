@@ -1,6 +1,5 @@
 const express = require('express');
 const {
-  getOverview,
   getTour,
   getHomepage,
   getLoginForm,
@@ -14,28 +13,17 @@ const {
   getReviewForm,
   getMyFavoriteTours,
   getReviewUpdateForm,
-  getAllUsersForm,
   userUpdateForm,
-  getAllReviewsForm,
   getReviewUpdateForm_admin,
   getAllBookingsForm,
   getBookingsUpdateForm,
-  highestRating,
-  lowestRating,
-  sortBycreateAt,
   renderAll,
-  sortByEmail,
-  sortByName,
   renderTop5,
 } = require('../controllers/viewsController');
 
 const { createBookingCheckout } = require('../controllers/bookingController');
 
-const {
-  aliasTopTours,
-  heighestPrice,
-  lowestPrice,
-} = require('../controllers/tourController');
+const { aliasTopTours } = require('../controllers/tourController');
 
 const Tour = require('../models/tourModel');
 const Review = require('../models/reviewModel');
