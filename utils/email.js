@@ -15,7 +15,13 @@ module.exports = class Email {
       return nodemailer.createTransport({
         service: 'SendGrid',
         secure: false,
-        ignoreTLS: true,
+        logger: true,
+        debug: true,
+        secureConnection: false,
+        tls: {
+          rejectUnAuthorized: true,
+        },
+        // ignoreTLS: true,
         auth: {
           user: process.env.SENDGRID_USERNAME,
           pass: process.env.SENDGRID_PASSWORD,
