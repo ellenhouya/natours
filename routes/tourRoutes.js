@@ -26,7 +26,7 @@ router.use('/:tourId/reviews', reviewRouter);
 
 router.use('/:tourId/bookings', bookingRouter);
 
-router.route('/top-5-cheap').get(aliasTopTours, getAllTours);
+// router.route('/top-5-cheap').get(aliasTopTours, getAllTours);
 
 router.route('/tour-stats').get(getTourStats);
 
