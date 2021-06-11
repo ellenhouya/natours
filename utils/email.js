@@ -14,6 +14,7 @@ module.exports = class Email {
     if (process.env.NODE_ENV === 'production') {
       return nodemailer.createTransport({
         service: 'SendGrid',
+        port: '192.168.1.24',
         // secure: false,
         // logger: true,
         // debug: true,
