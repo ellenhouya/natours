@@ -14,13 +14,12 @@ module.exports = class Email {
     if (process.env.NODE_ENV === 'production') {
       return nodemailer.createTransport({
         service: 'SendGrid',
-        // ignoreTLS: true,
         secure: false,
+        ignoreTLS: true,
         auth: {
           user: process.env.SENDGRID_USERNAME,
           pass: process.env.SENDGRID_PASSWORD,
         },
-        tls: { rejectUnauthorized: false },
       });
     }
 
