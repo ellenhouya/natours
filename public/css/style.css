@@ -1523,3 +1523,13 @@ body {
   border: 0;
   border-bottom: 1px solid #999;
 }
+
+.card__footer-my-bookings {
+  display: flex;
+  flex-direction: column;
+  grid-row-gap: 0;
+}
+
+.card__footer-my-bookings p {
+  margin-bottom: 10px;
+}

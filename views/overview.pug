@@ -61,17 +61,17 @@ block content
                             span= `${tour.maxGroupSize} people`
 
 
-                    .card__footer
+                    .card__footer(class= title === 'My Tours'? 'card__footer-my-bookings' : '')
                         p
                             span.card__footer-value= title==='My Tours'? 'Qty: ' :`$${tour.price}`
                             | 
                             span.card__footer-text= title==='My Tours'? `${bookings[index].quantity}` :'per person'
                             
-                            - if (title === 'My Tours')
-                                p
-                                    span.card__footer-value U/P:
-                                    | 
-                                    span.card__footer-text= `$${tour.price}`
+                        - if (title === 'My Tours')
+                            p
+                                span.card__footer-value U/P:
+                                | 
+                                span.card__footer-text= `$${tour.price}`
 
                         p.card__ratings
                             span.card__footer-value= title==='My Tours'? 'Total:' : tour.ratingsAverage
@@ -83,6 +83,10 @@ block content
                                     span.card__footer-value= 'Purchase Date:' 
                                     | 
                                     span.card__footer-text= `${new Date().toLocaleDateString()}`
+                                p   
+                                    span.card__footer-value Start Date: 
+                                    | 
+                                    span.card__footer-text= `${tour.datesAndSoldOut[index].date.toLocaleDateString()}`
 
                         -if (user && user.favoriteTours && title !== 'My Tours')
                             - if(user.favoriteTours.includes(tour._id))
