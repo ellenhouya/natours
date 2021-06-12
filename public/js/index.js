@@ -683,3 +683,6 @@ function assignLocation_sort(collection, sortValue) {
 addEventListener('DOMContentLoaded', (e) => {
   window.scrollTo(0, 0);
 });
+
+const aletrMessage = document.querySelector('body').dataset.alert;
+if (aletrMessage) showAlert('success', aletrMessage, 8);

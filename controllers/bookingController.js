@@ -20,7 +20,10 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ['card'],
 
-    success_url: `${req.protocol}://${req.get('host')}/my-bookings`,
+    success_url: `${req.protocol}://${req.get(
+      'host'
+    )}/my-bookings?alert=booking`,
+    // success_url: `${req.protocol}://${req.get('host')}/my-bookings`,
 
     metadata: {
       startDate: req.params.startDate,
@@ -60,8 +63,6 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
     session,
   });
 });
-
-//
 
 // exports.createBookingCheckout = catchAsync(async (req, res, next) => {
 //   // const { tour, quantity, startDate } = req.query;
@@ -115,23 +116,15 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
 // });
 
 const createBookingCheckout = async (session) => {
-  console.log(session);
+  // make sure that the properties are consistent with the ones on stripe response
 
   const tour = session.client_reference_id;
 
   const user = (await User.findOne({ email: session.customer_email })).id;
 
-  // const { price } = await Tour.findById(tour);
-  // const price = session.amount_total / 100;
-  // const price = session.line_items[0].amount / 100;
-
   const { startDate, quantity, price } = session.metadata;
 
-  // const quantity = session.line_items[0].quantity;
-
   const tourDB = await Tour.findById(tour);
-
-  console.log(tour, user, price, startDate, quantity);
 
   const soldOutObj = tourDB.datesAndSoldOut.find(
     (obj) => obj.date.toLocaleString() === new Date(startDate).toLocaleString()
@@ -189,8 +182,6 @@ exports.webhookCheckout = (req, res, next) => {
   } catch (err) {
     return res.status(400).send(`Webhook error: ${err.message}`);
   }
-
-  console.log(event);
 
   if (event.type === 'checkout.session.completed') {
     createBookingCheckout(event.data.object);

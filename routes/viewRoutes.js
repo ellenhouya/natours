@@ -19,6 +19,7 @@ const {
   getBookingsUpdateForm,
   renderAll,
   renderTop5,
+  alerts,
 } = require('../controllers/viewsController');
 
 // const { createBookingCheckout } = require('../controllers/bookingController');
@@ -36,6 +37,8 @@ const {
 } = require('../controllers/authController');
 
 const router = express.Router();
+
+router.use(alerts);
 
 router.get('/', isLoggedIn, renderAll(Tour, 'overview'));
 

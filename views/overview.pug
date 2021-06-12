@@ -62,29 +62,29 @@ block content
 
 
                     .card__footer
-                        //- p
-                        //-     span.card__footer-value= `$${tour.price}`
-                        //-     | 
-                        //-     span.card__footer-text= 'per person'
-                        //- p.card__ratings
-                        //-     span.card__footer-value= tour.ratingsAverage
-                        //-     |  
-                        //-     span.card__footer-text= `rating (${tour.ratingsQuantity})`
                         p
                             span.card__footer-value= title==='My Tours'? 'Qty: ' :`$${tour.price}`
                             | 
                             span.card__footer-text= title==='My Tours'? `${bookings[index].quantity}` :'per person'
+                            
+                            - if (title === 'My Tours')
+                                p
+                                    span.card__footer-value U/P:
+                                    | 
+                                    span.card__footer-text= `$${tour.price}`
+
                         p.card__ratings
                             span.card__footer-value= title==='My Tours'? 'Total:' : tour.ratingsAverage
                             |  
                             span.card__footer-text= title==='My Tours'? ` $${bookings[index].quantity * bookings[index].price}` :`rating (${tour.ratingsQuantity})`
-                        p
+                        
                             - if(title === 'My Tours')
-                                span.card__footer-value= 'Purchase Date:' 
-                                | 
-                                span.card__footer-text= `${new Date().toLocaleDateString()}`
+                                p
+                                    span.card__footer-value= 'Purchase Date:' 
+                                    | 
+                                    span.card__footer-text= `${new Date().toLocaleDateString()}`
 
-                        -if (user && user.favoriteTours)
+                        -if (user && user.favoriteTours && title !== 'My Tours')
                             - if(user.favoriteTours.includes(tour._id))
                                 i.fas.fa-thumbs-up.thumbs-up-icon(data-tour-name=`${tour.name}`)
                             - else
