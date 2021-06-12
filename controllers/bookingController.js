@@ -38,38 +38,38 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
 
     client_reference_id: req.params.tourId,
 
-    // line_items: [
-    //   {
-    //     name: `${tour.name} Tour`,
-    //     description: tour.summary,
-    //     images: [
-    //       `${req.protocol}://${req.get('host')}/img/tours/${tour.imageCover}`,
-    //     ],
-    //     // images: [`https://www.natours.dev/img/tours/${tour.imageCover}`],
-    //     amount: tour.price * 100,
-    //     currency: 'usd',
-    //     quantity: req.params.quantity * 1,
-    //   },
-    // ],
-
     line_items: [
       {
+        name: `${tour.name} Tour`,
+        description: tour.summary,
+        // images: [`https://www.natours.dev/img/tours/${tour.imageCover}`],
+        images: [
+          `${req.protocol}://${req.get('host')}/img/tours/${tour.imageCover}`,
+        ],
+        amount: tour.price * 100,
+        currency: 'usd',
         quantity: req.params.quantity * 1,
-        price_data: {
-          currency: 'usd',
-          unit_amount: tour.price * 100,
-          product_data: {
-            name: `${tour.name} Tour`,
-            description: tour.summary,
-            images: [
-              `${req.protocol}://${req.get('host')}/img/tours/${
-                tour.imageCover
-              }`,
-            ],
-          },
-        },
       },
     ],
+
+    // line_items: [
+    //   {
+    //     quantity: req.params.quantity * 1,
+    //     price_data: {
+    //       currency: 'usd',
+    //       unit_amount: tour.price * 100,
+    //       product_data: {
+    //         name: `${tour.name} Tour`,
+    //         description: tour.summary,
+    //         images: [
+    //           `${req.protocol}://${req.get('host')}/img/tours/${
+    //             tour.imageCover
+    //           }`,
+    //         ],
+    //       },
+    //     },
+    //   },
+    // ],
   });
 
   res.status(200).json({
@@ -138,8 +138,9 @@ const createBookingCheckout = async (session) => {
 
   const user = (await User.findOne({ email: session.customer_email })).id;
 
-  const price = session.amount_total / 100;
-  // const price = session.line_items[0].amount / 100;
+  // const { price } = await Tour.findById(tour);
+  // const price = session.amount_total / 100;
+  const price = session.line_items[0].amount / 100;
 
   const { startDate } = session.metadata;
 
