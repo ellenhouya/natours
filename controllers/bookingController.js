@@ -38,17 +38,36 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
 
     client_reference_id: req.params.tourId,
 
+    // line_items: [
+    //   {
+    //     name: `${tour.name} Tour`,
+    //     description: tour.summary,
+    //     images: [
+    //       `${req.protocol}://${req.get('host')}/img/tours/${tour.imageCover}`,
+    //     ],
+    //     // images: [`https://www.natours.dev/img/tours/${tour.imageCover}`],
+    //     amount: tour.price * 100,
+    //     currency: 'usd',
+    //     quantity: req.params.quantity * 1,
+    //   },
+    // ],
+
     line_items: [
       {
-        name: `${tour.name} Tour`,
-        description: tour.summary,
-        images: [
-          `${req.protocol}://${req.get('host')}/img/tours/${tour.imageCover}`,
-        ],
-        // images: [`https://www.natours.dev/img/tours/${tour.imageCover}`],
-        amount: tour.price * 100,
-        currency: 'usd',
         quantity: req.params.quantity * 1,
+        price_data: {
+          currency: 'usd',
+          unit_amount: tour.price * 100,
+          product_data: {
+            name: `${tour.name} Tour`,
+            description: tour.summary,
+            images: [
+              `${req.protocol}://${req.get('host')}/img/tours/${
+                tour.imageCover
+              }`,
+            ],
+          },
+        },
       },
     ],
   });
@@ -117,13 +136,16 @@ const createBookingCheckout = async (session) => {
 
   const user = (await User.findOne({ email: session.customer_email })).id;
 
-  const price = session.line_items[0].amount / 100;
+  const price = session.amount_total / 100;
+  // const price = session.line_items[0].amount / 100;
 
   const { startDate } = session.metadata;
 
   const quantity = session.line_items[0].quantity;
 
   const tourDB = await Tour.findById(tour);
+
+  console.log(tour, user, price, startDate, quantity);
 
   const soldOutObj = tourDB.datesAndSoldOut.find(
     (obj) => obj.date.toLocaleString() === new Date(startDate).toLocaleString()
