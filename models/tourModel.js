@@ -163,7 +163,6 @@ tourSchema.virtual('durationWeeks').get(function () {
 
 tourSchema.virtual('reviews', {
   ref: 'Review',
-
   foreignField: 'tour',
   localField: '_id',
 });

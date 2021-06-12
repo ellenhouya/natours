@@ -80,9 +80,10 @@ block content
             button.btn.btn--green.span-all-rows.review-btn
                 a(href=`/write-a-review/${tour.id}`) Write a Review
         
-        .reviews
-            each review in tour.reviews
-                +reviewCard(review)
+        -if(tour.reviews.length!==0) 
+            .reviews
+                each review in tour.reviews
+                    +reviewCard(review)
 
 
     section.section-cta
