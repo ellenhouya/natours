@@ -21,7 +21,7 @@ const {
   renderTop5,
 } = require('../controllers/viewsController');
 
-const { createBookingCheckout } = require('../controllers/bookingController');
+// const { createBookingCheckout } = require('../controllers/bookingController');
 
 const { aliasTopTours } = require('../controllers/tourController');
 
@@ -37,7 +37,7 @@ const {
 
 const router = express.Router();
 
-router.get('/', createBookingCheckout, isLoggedIn, renderAll(Tour, 'overview'));
+router.get('/', isLoggedIn, renderAll(Tour, 'overview'));
 
 router.get(
   '/top-5-cheap',

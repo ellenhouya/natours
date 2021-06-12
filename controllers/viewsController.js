@@ -83,9 +83,9 @@ exports.getAccount = (req, res) => {
 exports.getMyBookings = catchAsync(async (req, res, next) => {
   const bookings = await Bookings.find({ user: req.user._id });
 
-  const tourIDs = bookings.map((el) => el.tour);
-
-  const tours = await Tour.find({ _id: { $in: tourIDs } });
+  const tours = await Promise.all(
+    bookings.map(async (booking) => await Tour.findById(booking.tour._id))
+  );
 
   res
     .status(200)
