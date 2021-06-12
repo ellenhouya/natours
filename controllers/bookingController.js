@@ -25,6 +25,7 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
     metadata: {
       startDate: req.params.startDate,
       quantity: req.params.quantity,
+      price: tour.price,
     },
 
     // success_url: `${req.protocol}://${req.get('host')}/?tour=${
@@ -52,25 +53,6 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
         quantity: req.params.quantity * 1,
       },
     ],
-
-    // line_items: [
-    //   {
-    //     quantity: req.params.quantity * 1,
-    //     price_data: {
-    //       currency: 'usd',
-    //       unit_amount: tour.price * 100,
-    //       product_data: {
-    //         name: `${tour.name} Tour`,
-    //         description: tour.summary,
-    //         images: [
-    //           `${req.protocol}://${req.get('host')}/img/tours/${
-    //             tour.imageCover
-    //           }`,
-    //         ],
-    //       },
-    //     },
-    //   },
-    // ],
   });
 
   res.status(200).json({
@@ -140,10 +122,10 @@ const createBookingCheckout = async (session) => {
   const user = (await User.findOne({ email: session.customer_email })).id;
 
   // const { price } = await Tour.findById(tour);
-  const price = session.amount_total / 100;
+  // const price = session.amount_total / 100;
   // const price = session.line_items[0].amount / 100;
 
-  const { startDate, quantity } = session.metadata;
+  const { startDate, quantity, price } = session.metadata;
 
   // const quantity = session.line_items[0].quantity;
 
