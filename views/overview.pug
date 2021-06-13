@@ -86,8 +86,8 @@ block content
                                 p   
                                     span.card__footer-value Start Date: 
                                     | 
-                                    span.card__footer-text= `${bookings[index].startDateSelected}`
-                                    //- span.card__footer-text= `${tour.datesAndSoldOut[index].date.toLocaleDateString()}`
+                                    span.card__footer-text= `${bookings[index].startDateSelected.slice(0, 10)}`
+                                    
 
                         -if (user && user.favoriteTours && title !== 'My Tours')
                             - if(user.favoriteTours.includes(tour._id))
