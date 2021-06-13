@@ -32,6 +32,8 @@ const bookingSchema = new mongoose.Schema({
     type: Boolean,
     default: true,
   },
+
+  startDateSelected: String,
 });
 
 bookingSchema.pre(/^find/, function (next) {

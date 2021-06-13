@@ -64,57 +64,6 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
   });
 });
 
-// exports.createBookingCheckout = catchAsync(async (req, res, next) => {
-//   // const { tour, quantity, startDate } = req.query;
-//   const { tour, user, price, quantity, startDate } = req.query;
-
-//   if (!tour || !user || !price || !quantity || !startDate) return next();
-
-//   const tourDB = await Tour.findById(tour);
-//   const soldOutObj = tourDB.datesAndSoldOut.find(
-//     (obj) => obj.date.toLocaleString() === new Date(startDate).toLocaleString()
-//   );
-
-//   if (soldOutObj.participants + quantity * 1 > tourDB.maxGroupSize) {
-//     return next(
-//       new AppError(
-//         `Max group size reached. Only ${
-//           tourDB.maxGroupSize - soldOutObj.participants
-//         } spot(s) left`,
-//         400
-//       )
-//     );
-//   }
-
-//   await Tour.findOneAndUpdate(
-//     {
-//       _id: tour,
-//       datesAndSoldOut: {
-//         $elemMatch: {
-//           date: startDate,
-//         },
-//       },
-//     },
-//     {
-//       $inc: { 'datesAndSoldOut.$.participants': quantity },
-//       $set: {
-//         'datesAndSoldOut.$.soldOut':
-//           soldOutObj.participants + quantity * 1 === tourDB.maxGroupSize
-//             ? true
-//             : false,
-//       },
-//     },
-//     {
-//       new: true,
-//       runValidators: true,
-//     }
-//   );
-
-//   await Booking.create({ tour, user, price, quantity });
-
-//   res.redirect(req.originalUrl.split('?')[0]);
-// });
-
 const createBookingCheckout = async (session) => {
   // make sure that the properties are consistent with the ones on stripe response
 
@@ -165,7 +114,7 @@ const createBookingCheckout = async (session) => {
     }
   );
 
-  await Booking.create({ tour, user, price, quantity });
+  await Booking.create({ tour, user, price, quantity, startDateSelected });
 };
 
 exports.webhookCheckout = (req, res, next) => {
