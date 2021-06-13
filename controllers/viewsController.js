@@ -31,6 +31,8 @@ exports.getOverview = catchAsync(async (req, res, next) => {
 });
 
 exports.getTour = catchAsync(async (req, res, next) => {
+  let wasPurchased;
+
   const tour = await Tour.findOne({ slug: req.params.slug }).populate({
     path: 'reviews',
     fields: 'review rating user',
@@ -40,13 +42,14 @@ exports.getTour = catchAsync(async (req, res, next) => {
     return next(new AppError('There is no tour with that name', 404));
   }
 
-  const bookings = await Booking.find({
-    user: req.user._id,
-  });
-
-  const wasPurchased = bookings.some((booking) => {
-    return booking.tour._id.toString() === tour._id.toString();
-  });
+  if (req.user) {
+    const bookings = await Booking.find({
+      user: req.user._id,
+    });
+    wasPurchased = bookings.some((booking) => {
+      return booking.tour._id.toString() === tour._id.toString();
+    });
+  }
 
   res
     .status(200)
