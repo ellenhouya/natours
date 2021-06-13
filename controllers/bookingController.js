@@ -114,7 +114,13 @@ const createBookingCheckout = async (session) => {
     }
   );
 
-  await Booking.create({ tour, user, price, quantity, startDateSelected });
+  await Booking.create({
+    tour,
+    user,
+    price,
+    quantity,
+    startDateSelected: startDate,
+  });
 };
 
 exports.webhookCheckout = (req, res, next) => {
