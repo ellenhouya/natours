@@ -4,25 +4,26 @@ block append head
     link(rel="stylesheet", href="https://use.fontawesome.com/releases/v5.5.0/css/all.css", integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU",
         crossorigin="anonymous")
 
-block content 
-    label.sort-label Sort by 
-        select#sort-by
-            option(value='default') FEATURED
-            option(value='price' selected= defaultOption == 'price') PRICE LOW TO HIGH
-            option(value='-price' selected= defaultOption == '-price') PRICE HIGH TO LOW 
-            option(value='top-5-cheap' selected= defaultOption == 'top-5-cheap') TOP 5 
+block content
+    -if(title !== 'My Tours')
+        label.sort-label Sort by 
+            select#sort-by
+                option(value='default') FEATURED
+                option(value='price' selected= defaultOption == 'price') PRICE LOW TO HIGH
+                option(value='-price' selected= defaultOption == '-price') PRICE HIGH TO LOW 
+                option(value='top-5-cheap' selected= defaultOption == 'top-5-cheap') TOP 5 
 
-    label.filter-label Filter By
-        select#filter-by
-            
-            option(value='price[lt]' selected = defaultFilter == 'price[lt]')= `PRICE <` 
-            option(value='price[gt]' selected = defaultFilter == 'price[gt]')= `PRICE >`
-            option(value='ratingsAverage[gt]' selected = defaultFilter == 'ratingsAverage[gt]')= `RATING >`
-            option(value='duration' selected = defaultFilter == 'duration') DURATION   
-            option(value='maxGroupSize[lt]' selected = defaultFilter == 'maxGroupSize[lt]')= `GROUP SIZE <`
-            option(value='maxGroupSize[gt]' selected = defaultFilter == 'maxGroupSize[gt]')= `GROUP SIZE >`
-                input.filter-input(type="number" placeholder='Enter a num' value= defaultNum)
-                button.filter-btn Filter
+        label.filter-label Filter By
+            select#filter-by
+                
+                option(value='price[lt]' selected = defaultFilter == 'price[lt]')= `PRICE <` 
+                option(value='price[gt]' selected = defaultFilter == 'price[gt]')= `PRICE >`
+                option(value='ratingsAverage[gt]' selected = defaultFilter == 'ratingsAverage[gt]')= `RATING >`
+                option(value='duration' selected = defaultFilter == 'duration') DURATION   
+                option(value='maxGroupSize[lt]' selected = defaultFilter == 'maxGroupSize[lt]')= `GROUP SIZE <`
+                option(value='maxGroupSize[gt]' selected = defaultFilter == 'maxGroupSize[gt]')= `GROUP SIZE >`
+                    input.filter-input(type="number" placeholder='Enter a num' value= defaultNum)
+                    button.filter-btn Filter
 
     main.main
         .card-container
