@@ -1645,3 +1645,61 @@ body {
     padding: 0 3rem;
   }
 }
+
+@media (max-width: 550px) {
+  .heading-primary {
+    font-size: 2rem;
+  }
+
+  .section-description {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .section-pictures {
+    display: block;
+  }
+
+  .section-cta {
+    padding: 3rem 1rem;
+    text-align: center;
+  }
+
+  .section-cta img,
+  .cta__img--logo {
+    display: none;
+  }
+
+  .cta__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 350px;
+  }
+
+  .cta__content h2,
+  .cta__text {
+    margin-bottom: 30px;
+  }
+
+  .cta {
+    padding: 2rem 1rem 2rem 1rem;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .booking-info-con {
+    display: flex;
+    justify-content: center;
+    width: 150%;
+  }
+
+  #book-tour {
+    width: 25%;
+  }
+
+  #selectDate {
+    width: 20%;
+  }
+}

@@ -245,14 +245,80 @@ video {
   text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.6);
 }
 
-@media (max-width: 450px) {
-  .bkg-con {
-    height: 60vh;
+@media (max-width: 1400px) {
+  #background {
+    background-size: calc(130% + var(--y) * 1);
   }
-
+}
+@media (max-width: 1300px) {
+  #background {
+    background-size: calc(150% + var(--y) * 1);
+  }
+}
+@media (max-width: 1200px) {
+  #background {
+    background-size: calc(170% + var(--y) * 1);
+  }
+}
+@media (max-width: 1100px) {
+  #background {
+    background-size: calc(170% + var(--y) * 1);
+  }
+}
+@media (max-width: 920px) {
+  #background {
+    background-size: calc(210% + var(--y) * 1);
+  }
+}
+@media (max-width: 850px) {
+  #background {
+    background-size: calc(230% + var(--y) * 1);
+  }
+  .bkg-girl {
+    width: 380px;
+    left: 40%;
+  }
+}
+@media (max-width: 760px) {
+  #background {
+    background-size: calc(250% + var(--y) * 1);
+  }
+}
+@media (max-width: 705px) {
+  #background {
+    background-size: calc(270% + var(--y) * 1);
+  }
+}
+@media (max-width: 655px) {
+  #background {
+    background-size: calc(290% + var(--y) * 1);
+  }
+}
+@media (max-width: 610px) {
+  #background {
+    background-size: calc(310% + var(--y) * 1);
+  }
+  .bkg-girl {
+    width: 360px;
+    left: 35%;
+  }
+}
+@media (max-width: 570px) {
+  #background {
+    background-size: calc(330% + var(--y) * 1);
+  }
+  .bkg-girl {
+    left: 30%;
+  }
+}
+@media (max-width: 541px) {
   .bkg-title {
     font-size: 3em;
     top: 60%;
+  }
+
+  .bkg-con {
+    height: 100vh;
   }
 
   #background {
@@ -261,7 +327,7 @@ video {
 
   .bkg-girl {
     width: 200px;
-    height: 450px;
+    height: 500px;
     left: 30%;
     max-width: calc(400px - var(--y) / 10);
   }
@@ -326,80 +392,5 @@ video {
   .video-con h1 {
     font-size: 3em;
     top: 25%;
-  }
-}
-
-@media (max-width: 1400px) {
-  #background {
-    background-size: calc(130% + var(--y) * 1);
-  }
-}
-@media (max-width: 1300px) {
-  #background {
-    background-size: calc(150% + var(--y) * 1);
-  }
-}
-@media (max-width: 1200px) {
-  #background {
-    background-size: calc(170% + var(--y) * 1);
-  }
-}
-@media (max-width: 1100px) {
-  #background {
-    background-size: calc(190% + var(--y) * 1);
-  }
-}
-@media (max-width: 920px) {
-  #background {
-    background-size: calc(210% + var(--y) * 1);
-  }
-}
-@media (max-width: 850px) {
-  #background {
-    background-size: calc(230% + var(--y) * 1);
-  }
-  .bkg-girl {
-    width: 380px;
-    left: 40%;
-  }
-}
-@media (max-width: 760px) {
-  #background {
-    background-size: calc(250% + var(--y) * 1);
-  }
-}
-@media (max-width: 705px) {
-  #background {
-    background-size: calc(270% + var(--y) * 1);
-  }
-}
-@media (max-width: 655px) {
-  #background {
-    background-size: calc(290% + var(--y) * 1);
-  }
-}
-@media (max-width: 610px) {
-  #background {
-    background-size: calc(310% + var(--y) * 1);
-  }
-  .bkg-girl {
-    width: 360px;
-    left: 35%;
-  }
-}
-@media (max-width: 570px) {
-  #background {
-    background-size: calc(330% + var(--y) * 1);
-  }
-  .bkg-girl {
-    left: 30%;
-  }
-}
-@media (max-width: 540px) {
-  #background {
-    background-size: calc(350% + var(--y) * 1);
-  }
-  .bkg-girl {
-    left: 25%;
   }
 }
