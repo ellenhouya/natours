@@ -202,18 +202,6 @@ section.slide-section:nth-child(even) .container .content {
   max-width: calc(400px - var(--y) / 5);
 }
 
-.bkg-title {
-  position: absolute;
-  top: 40%;
-  width: 100%;
-  color: #fff;
-  font-size: 12em;
-  transform: translate(calc(100% - var(--y) * 2), -50%);
-
-  font-family: Arial, Helvetica, sans-serif;
-  text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.6);
-}
-
 .slide-8 {
   margin-top: 200vh;
 }
@@ -233,8 +221,8 @@ section.slide-section:nth-child(even) .container .content {
 
 .video-con h1 {
   position: absolute;
-  top: 20%;
-  left: 5%;
+  top: 80%;
+  left: -5%;
   color: #fff;
   text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.6);
   font-size: 10em;
@@ -245,4 +233,99 @@ section.slide-section:nth-child(even) .container .content {
 video {
   width: 100%;
   height: 100%;
+}
+
+.bkg-title {
+  position: absolute;
+  top: 40%;
+  width: 100%;
+  color: #fff;
+  font-size: 12em;
+  transform: translate(calc(100% - var(--y) * 2), -50%);
+  font-family: Arial, Helvetica, sans-serif;
+  text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.6);
+}
+
+@media (max-width: 450px) {
+  .bkg-con {
+    height: 60vh;
+  }
+
+  .bkg-title {
+    font-size: 3em;
+    top: 60%;
+  }
+
+  #background {
+    background-size: cover;
+  }
+
+  .bkg-girl {
+    width: 200px;
+    height: 450px;
+    left: 30%;
+    max-width: calc(400px - var(--y) / 10);
+  }
+
+  section.slide-section {
+    min-height: 40vh;
+    width: 100%;
+    perspective: 1500px;
+    margin-bottom: 0;
+  }
+
+  section.slide-section h2 {
+    margin-left: 50px;
+    font-size: 2em;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6);
+    letter-spacing: 1px;
+    word-spacing: 2px;
+  }
+
+  section.slide-section .container {
+    width: 90%;
+  }
+
+  section.slide-section .container .imgBx {
+    width: 100%;
+    height: 350px;
+  }
+
+  section.slide-section .container .content {
+    right: 0;
+    margin-top: 100px;
+    margin-bottom: 20px;
+    padding: 10px;
+    max-width: 200px;
+    border-bottom: 2px solid #4ac7ff;
+  }
+
+  section.slide-section .container .content p {
+    line-height: 2em;
+    font-size: 10px;
+  }
+
+  section.slide-section:nth-child(even) .container .content {
+    left: 0;
+  }
+
+  .box {
+    width: 95%;
+  }
+
+  #map {
+    display: none;
+  }
+
+  .clip-path-con {
+    height: 500px;
+    color: #fff;
+    background-size: cover;
+  }
+
+  .video-con h1 {
+    font-size: 3em;
+    top: 25%;
+  }
 }

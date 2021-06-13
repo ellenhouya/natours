@@ -46,7 +46,6 @@ body {
 
 .main {
   background: linear-gradient(to bottom, #fff, #f3f9ff, #d4e4f2);
-
   padding: 8rem 6rem;
   -webkit-box-flex: 1;
   -ms-flex: 1;
@@ -293,10 +292,8 @@ body {
 
 .header {
   background-color: #1d3557;
-
   padding: 0 5rem;
   height: 8rem;
-
   z-index: 1001;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1532,4 +1529,119 @@ body {
 
 .card__footer-my-bookings p {
   margin-bottom: 10px;
+}
+
+@media (max-width: 450px) {
+  .header {
+    height: 100%;
+    padding: 30px 0;
+  }
+
+  .homepage_button {
+    margin-bottom: 0 !important;
+  }
+
+  .nav__el {
+    font-size: 1.2rem !important;
+    padding: 5px 15px;
+    margin-bottom: 0 !important;
+  }
+
+  .header__logo img {
+    width: 40px;
+    height: 20px;
+  }
+
+  .footer {
+    padding: 2rem 1rem 2rem 1rem;
+    font-size: 1rem;
+  }
+
+  .card-container {
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 2rem;
+    perspective: 2000px;
+  }
+
+  .sort-label,
+  .filter-label,
+  #sort-by,
+  #filter-by,
+  .filter-btn {
+    font-size: 13px;
+  }
+
+  .main {
+    padding: 3rem 1rem;
+  }
+
+  .login-form,
+  .forgotPassword-form,
+  .passwordReset-form {
+    max-width: 90%;
+    width: 90%;
+    padding: 2rem 3rem;
+    border-radius: 5px;
+  }
+
+  .heading-secondary {
+    font-size: 1.55rem;
+  }
+
+  .btn--green {
+    font-size: 1.2rem;
+    padding: 1rem 1.7rem;
+  }
+
+  .forgotPassword-link {
+    font-size: 14px;
+  }
+
+  .user-view {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .all-reviews-con {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .review-container {
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 450px;
+    width: 100%;
+    padding: 10px;
+    margin: 0;
+    width: 90%;
+  }
+
+  .review-info-con {
+    margin: 30px 0 15px 0 !important;
+  }
+
+  .others-con {
+    width: 60% !important;
+  }
+
+  .tour-box {
+    width: 150px;
+  }
+
+  .user-container {
+    flex-direction: column;
+  }
+
+  .user-container-update {
+    height: 120% !important;
+    min-height: 500px;
+  }
+
+  .user-view__form-container {
+    padding: 0 3rem;
+  }
 }
